@@ -12,7 +12,7 @@ COPY pyproject.toml pdm.lock /project/
 RUN pdm sync -G server --prod --no-self
 
 COPY src/ /project/src
-RUN pdm sync -G server --prod
+RUN pdm sync -G server --prod --no-editable
 
 
 FROM python:3.10-slim
