@@ -1,0 +1,40 @@
+[project]
+name = "python-pdm-template"
+description = "A Project Template of Python with PDM"
+dynamic = ["version"]
+authors = [{ name = "Du Shiqiao", email = "lucidfrontier.45@gmail.com" }]
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = ["fastapi>=0.79.0", "uvicorn[standard]>=0.18.2"]
+
+[project.optional-dependencies]
+server = ["gunicorn>=20.1.0"]
+
+[project.scripts]
+app = "app.cli:main"
+
+[tool.pdm]
+version = { source = "file", path = "src/app/version.py" }
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "flake8>=4.0.1",
+    "mypy>=0.971",
+    "black>=22.6.0",
+    "isort>=5.10.1",
+    "pytest-cov>=3.0.0",
+]
+
+[tool.pdm.scripts]
+black = "black ."
+isort = "isort ."
+flake8 = "flake8 --exit-zero ."
+mypy = "mypy --show-column-numbers ."
+test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
+format = { composite = ["black", "isort"] }
+lint = { composite = ["flake8", "mypy"] }
+check = { composite = ["format", "lint", "test"] }
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
