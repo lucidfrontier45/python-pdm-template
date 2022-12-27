@@ -3,7 +3,6 @@
         "ms-python.black-formatter",
         "ryanluker.vscode-coverage-gutters",
         "visualstudioexptteam.vscodeintellicode",
-        "ms-python.isort",
         "ms-python.vscode-pylance",
         "ms-python.python",
         "kevinrose.vsc-python-indent",

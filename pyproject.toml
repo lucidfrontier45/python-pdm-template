@@ -13,28 +13,45 @@ server = ["gunicorn>=20.1.0"]
 [project.scripts]
 app = "app.cli:main"
 
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
+
 [tool.pdm]
 version = { source = "file", path = "src/app/version.py" }
 
 [tool.pdm.dev-dependencies]
-dev = [
-    "flake8>=4.0.1",
-    "mypy>=0.971",
-    "black>=22.6.0",
-    "isort>=5.10.1",
-    "pytest-cov>=3.0.0",
-]
+dev = ["mypy>=0.991", "black>=22.12.0", "pytest-cov>=4.0.0", "ruff>=0.0.195"]
 
 [tool.pdm.scripts]
 black = "black ."
-isort = "isort ."
-flake8 = "flake8 --exit-zero ."
 mypy = "mypy --show-column-numbers ."
+ruff_lint = "ruff ."
+ruff_fix = "ruff --fix-only ."
 test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
-format = { composite = ["black", "isort"] }
-lint = { composite = ["flake8", "mypy"] }
+format = { composite = ["black", "ruff_fix"] }
+lint = { composite = ["ruff_lint", "mypy"] }
 check = { composite = ["format", "lint", "test"] }
 
-[build-system]
-requires = ["pdm-pep517>=1.0.0"]
-build-backend = "pdm.pep517.api"
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::FutureWarning"]
+
+[tool.black]
+target-version = ["py39"]
+
+[tool.ruff]
+target-version = "py39"
+
+[tool.mypy]
+exclude = ["tests", "dist"]
+python_version = "3.9"
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+
+# [[tool.mypy.overrides]]
+# module = "external_lib.*"
+# ignore_missing_imports = true
