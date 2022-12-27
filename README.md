@@ -17,13 +17,12 @@ pdm install
 
 This installs the following tools in addition to `pdm install --prod`.
 
-- flake8
+- ruff
 - mypy
 - black
-- isort
 - pytest-cov
 
-The settings of those linter and formatters are written in `setup.cfg`
+The settings of those linter and formatters are written in `pyproject.toml`
 
 # VSCode Settings
 
@@ -45,12 +44,12 @@ app = "app.cli:main"
 ```toml
 [tool.pdm.scripts]
 black = "black ."
-isort = "isort ."
-flake8 = "flake8 --exit-zero ."
 mypy = "mypy --show-column-numbers ."
+ruff_lint = "ruff ."
+ruff_fix = "ruff --fix-only ."
 test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
-format = { composite = ["black", "isort"] }
-lint = { composite = ["flake8", "mypy"] }
+format = { composite = ["black", "ruff_fix"] }
+lint = { composite = ["ruff_lint", "mypy"] }
 check = { composite = ["format", "lint", "test"] }
 ```
 
