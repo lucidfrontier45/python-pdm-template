@@ -29,7 +29,7 @@ mypy = "mypy --show-column-numbers ."
 ruff_lint = "ruff ."
 ruff_fix = "ruff --fix-only ."
 test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
-format = { composite = ["black", "ruff_fix"] }
+format = { composite = ["ruff_fix", "black"] }
 lint = { composite = ["ruff_lint", "mypy"] }
 check = { composite = ["format", "lint", "test"] }
 
