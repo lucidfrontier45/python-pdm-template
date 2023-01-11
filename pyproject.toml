@@ -21,16 +21,21 @@ build-backend = "pdm.pep517.api"
 version = { source = "file", path = "src/app/version.py" }
 
 [tool.pdm.dev-dependencies]
-dev = ["mypy>=0.991", "black>=22.12.0", "pytest-cov>=4.0.0", "ruff>=0.0.195"]
+dev = [
+    "black>=22.12.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.0.195",
+    "pyright>=1.1.287",
+]
 
 [tool.pdm.scripts]
 black = "black ."
-mypy = "mypy --show-column-numbers ."
+pyright = "pyright ."
 ruff_lint = "ruff ."
 ruff_fix = "ruff --fix-only ."
 test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
 format = { composite = ["ruff_fix", "black"] }
-lint = { composite = ["ruff_lint", "mypy"] }
+lint = { composite = ["ruff_lint", "pyright"] }
 check = { composite = ["format", "lint", "test"] }
 
 [tool.pytest.ini_options]
@@ -46,16 +51,5 @@ target-version = "py39"
 [tool.ruff.per-file-ignores]
 "*/__init__.py" = ['F401']
 
-[tool.mypy]
-exclude = ["tests", "dist"]
-python_version = "3.9"
-check_untyped_defs = true
-warn_return_any = true
-warn_unused_ignores = true
-no_implicit_optional = true
-show_error_codes = true
-strict_equality = true
-
-# [[tool.mypy.overrides]]
-# module = "external_lib.*"
-# ignore_missing_imports = true
+[tool.pyright]
+pythonVersion = "3.9"

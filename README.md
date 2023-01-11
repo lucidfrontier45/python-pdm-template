@@ -18,7 +18,7 @@ pdm install
 This installs the following tools in addition to `pdm install --prod`.
 
 - ruff
-- mypy
+- pyright
 - black
 - pytest-cov
 
@@ -44,12 +44,12 @@ app = "app.cli:main"
 ```toml
 [tool.pdm.scripts]
 black = "black ."
-mypy = "mypy --show-column-numbers ."
+pyright = "pyright ."
 ruff_lint = "ruff ."
 ruff_fix = "ruff --fix-only ."
 test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
 format = { composite = ["black", "ruff_fix"] }
-lint = { composite = ["ruff_lint", "mypy"] }
+lint = { composite = ["ruff_lint", "pyright"] }
 check = { composite = ["format", "lint", "test"] }
 ```
 
