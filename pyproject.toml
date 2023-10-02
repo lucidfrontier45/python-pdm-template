@@ -54,3 +54,5 @@ target-version = "py311"
 
 [tool.pyright]
 pythonVersion = "3.11"
+# add directory names to exclude from analysis
+ignore = ["deps"]
