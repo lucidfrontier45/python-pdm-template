@@ -1,15 +1,24 @@
 {
+    // python specific editor settings
     "[python]": {
+        // run formatter on save
+        "editor.formatOnSave": true,
+        // run import organizer on save
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         },
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        // use black formatter
+        "editor.defaultFormatter": "ms-python.black-formatter",
     },
-    "editor.formatOnSave": true,
-    "python.linting.enabled": false,
+    // enable pytests
+    "python.testing.pytestEnabled": true,
     "python.testing.pytestArgs": [
         "tests"
     ],
-    "python.testing.pytestEnabled": true,
-    "python.testing.unittestEnabled": false
+    // disable unittests
+    "python.testing.unittestEnabled": false,
+    // run pylint with 'basic' mode
+    "python.analysis.typeCheckingMode": "basic",
+    // run pylint on all files in the workspace
+    "python.analysis.diagnosticMode": "workspace",
 }
