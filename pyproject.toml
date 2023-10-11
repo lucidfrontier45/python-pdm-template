@@ -44,10 +44,14 @@ filterwarnings = ["ignore::FutureWarning"]
 
 [tool.black]
 target-version = ["py311"]
+# add directory names to exclude from analysis
+extend-exclude = "deps"
 
 [tool.ruff]
 select = ["E", "F", "W"]
 target-version = "py311"
+# add directory names to exclude from analysis
+exclude = ["deps"]
 
 [tool.ruff.per-file-ignores]
 "*/__init__.py" = ['F401']
