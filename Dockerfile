@@ -1,4 +1,4 @@
-FROM python:3.10-slim as pdm
+FROM python:3.11-slim as pdm
 
 RUN pip install -U pip setuptools wheel
 RUN pip install pdm
@@ -14,7 +14,7 @@ COPY src/ /project/src
 RUN pdm sync -G server --prod --no-editable
 
 
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 COPY --from=builder /project/.venv /project/.venv
 ENV PATH /project/.venv/bin:$PATH

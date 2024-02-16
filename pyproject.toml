@@ -22,12 +22,7 @@ source = "file"
 path = "src/app/version.py"
 
 [tool.pdm.dev-dependencies]
-dev = [
-    "black>=23.9.1",
-    "ruff>=0.0.291",
-    "pyright>=1.1.329",
-    "pytest-cov>=4.1.0",
-]
+dev = ["black>=24.2.0", "ruff>=0.2.1", "pyright>=1.1.350", "pytest-cov>=4.1.0"]
 
 [tool.pdm.scripts]
 black = "black ."
