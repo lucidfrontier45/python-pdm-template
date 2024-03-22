@@ -5,10 +5,10 @@ authors = [{ name = "杜 世橋 Du Shiqiao", email = "lucidfrontier.45@gmail.com
 license = { text = "MIT" }
 dynamic = ["version"]
 requires-python = ">=3.11"
-dependencies = ["fastapi>=0.100.1", "uvicorn>=0.23.1"]
+dependencies = ["fastapi>=0.110.0", "uvicorn>=0.29.0"]
 
 [project.optional-dependencies]
-server = ["uvicorn[standard]>=0.23.1"]
+server = ["uvicorn[standard]>=0.29.0"]
 
 [project.scripts]
 app = "app.cli:main"
@@ -22,13 +22,13 @@ source = "file"
 path = "src/app/version.py"
 
 [tool.pdm.dev-dependencies]
-dev = ["black>=24.2.0", "ruff>=0.2.1", "pyright>=1.1.350", "pytest-cov>=4.1.0"]
+dev = ["black>=24.3.0", "ruff>=0.3.4", "pyright>=1.1.355", "pytest-cov>=4.1.0"]
 
 [tool.pdm.scripts]
 black = "black ."
 pyright = "pyright ."
-ruff_lint = "ruff ."
-ruff_fix = "ruff --fix-only ."
+ruff_lint = "ruff check ."
+ruff_fix = "ruff check --fix-only ."
 test = "pytest tests --cov=app --cov-report=term --cov-report=xml"
 format = { composite = ["ruff_fix", "black"] }
 lint = { composite = ["ruff_lint", "pyright"] }
@@ -43,12 +43,14 @@ target-version = ["py311"]
 extend-exclude = "deps"
 
 [tool.ruff]
-select = ["E", "F", "W"]
 target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
 # add directory names to exclude from analysis
 exclude = ["deps"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ['F401']
 
 [tool.pyright]
