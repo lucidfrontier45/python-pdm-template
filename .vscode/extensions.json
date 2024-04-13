@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "ms-python.black-formatter",
         "ryanluker.vscode-coverage-gutters",
         "ms-python.vscode-pylance",
         "ms-python.python",

@@ -8,7 +8,7 @@
             "source.organizeImports": "explicit"
         },
         // use black formatter
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
     },
     // enable pytests
     "python.testing.pytestEnabled": true,
